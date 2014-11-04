@@ -1,0 +1,20 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INTRODUCTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+L'utilisation de l'outil informatique pour réaliser des analyses longues ou poussées de données, ainsi que des simulations complexes est devenue courante dans le milieu scientifique. Ces études produise une quantité importante de données qu'il est nécessaire de stocker et d'évaluer leur qualité.
+
+\
+
+Le problème de stockage est souvent associé à ce que l'on appelle le \emph{Big Data}, littéralement \emph{grandes données}. Il regroupe tous les problèmes liés au stockage de grande quantité de données, à la variété, c'est-à-dire le stockage de données complexes (\eg{} images, vidéos, objets sérialisés) et à la vélocité de la base de données, ce qui signifie la garantit de l'accès à ces données. Nous ne parlerons plus de \emph{Big Data} par la suite puisque nous nous limiterons à l'utilisation de \emph{systèmes de gestion de base de données} (SGBD) dit \emph{classiques}, sous-entendu ceux utilisés avant l'apparitions de SGBD spécialisé dans le \emph{Big Data} comme SciDB ou Qserv.
+
+Le problème de la qualité des données est lié à la comparaison à des données déjà existantes dans le même domaine. Cette analyse n'est pas toujours évidente car l'existance de ces dernières n'est pas assurée, ce qui peut être contraint par l'aspect novateur de certaines expériences. Dans notre cas nous possédons une base de données de références, dans certains cas il est nécessaire de générer des données simulées à l'aide du modèle théorique de l'expérience. La comparaison de deux bases de données s'effectuent pas des associatioins entre éléments de la première base avec des éléments de la seconde ; pour cela on utilise les algorithmes de recherche de plus proche voisin, de cette manière nous pouvons associer un élément avec l'élément le plus proche de l'autre base.
+
+\
+
+Ce projet a pout but d'évaluer la qualité du logiciel de traitement d'images du futur télescope LSST : le \stack\footnote{Le terme \emph{stack} signifiant en anglais "pile" nous utiliserons aussi bien le féminin (pour rappeler la traduction du mot) que le masculin (puisqu'il s'agit d'un terme anglais sans genre, le masculin prend généralement le pas).}, mais aussi de stocker les données utiles à cette évaluation et le résultat de cette évaluation dans une base de données.
+
+Le télescope LSST est prévu pour la surveillance du ciel profond et des objets très faibles de notre système solaire, c'est-à-dire qu'il ne s'intéresse pas aux grands astres du système solaire, mais à des objets plus lointains tels que d'autres galaxies, des nébuleuses ou des étoiles il s'intéresse aussi à des objets plus proches comme des astéroïdes. La surveillance du ciel permet de repérer des évènements astronomiques de courtes durées comme des supernovæ qui sont considérées comme des "chandelles astronomiques" permettant des calculs de distances d'objets. L'astrométrie, c'est à dire la mesure des coordonnées des étoiles doit être la plus précise possible pour en observer la déviation dans le temps.
+
+Le logiciel \stack{} a pu être testé l'été dernier au cours de la \emph{Data-Challange 2013} (\DC) sur les données du télescope SDSS, sur la \emph{stripe 82} qui est une bande du ciel proche de l'équateur céleste. L'objectif de ce projet est donc d'évaluer la qualité des données générées par la \DC, ainsi que mesurer l'erreur commise par le \stack{} par rapport aux mesures de SDSS. Deux analyses seront effectuées, une première de comparaison à une autre base de données, en l'ocurence ici la base de données de SDSS, la seconde d'étude de stabilité temporelle de la base.
+

@@ -1,0 +1,160 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% RAPPORT DE PROJET zz2 2015-2016
+% projet : Conception et mise en fonction d'une base de données pour la
+%           représentation et l'utilisation des résultats d'un ou
+%           plusieurs algorithmes de comparaison (dans le cadre du
+%           projet LSST)
+% tuteur : Bogdan Vulpescu (vulpescu@clermont.in2p3.fr)
+% auteur : Josselin Massot (massot@poste.isima.fr)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[a4paper, 11pt]{article}
+
+\input{input/preambule}
+
+\title{Rapport de Projet}
+\author{Josselin \textsc{Massot}}
+\def\tutor{Bogdan \textsc{Vulpescu}}
+\def\tutorIsima{Monsieur \textsc{Isima}}
+\def\duration{60h}
+\date{mars 2015}
+
+\begin{document}
+
+
+%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thepage}{}
+\thispagestyle{plain}
+
+\maketitle
+
+%%% SPECIAL THANKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\thispagestyle{plain}
+%
+%\ 
+%\vspace{5cm}
+%\begin{flushright}
+%	À Foogy,\\
+%	Et ses gribouillages,\\
+%	Qui m'ont fait connaître le LPC
+%\end{flushright}
+%\vspace{10cm}
+%\ 
+
+%%% THANKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{plain}
+\pagenumbering{roman}
+
+\ 
+\vfill
+\section*{Remerciements}
+\addcontentsline{toc}{section}{Remerciements}
+
+\input{input/thanks}
+
+\vfill
+\ 
+
+
+%%% LIST OF FIGURES AND TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{plain}
+
+\section*{Liste des figures, tableaux, algorithmes et extraits de code}
+\addcontentsline{toc}{section}{Liste des figures, tableaux, algorithmes et extraits de code}
+\listoffigures
+\listoftables
+\listofalgorithms
+\lstlistoflistings
+
+
+%%% ABSRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{plain}
+
+\section*{Résumé -- Abstract}
+\addcontentsline{toc}{section}{Résumé -- Abstract}
+	\input{|"model/resume.sh input/resume.tex"}
+
+
+%%% TABLE OF CONTENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{plain}
+
+\tableofcontents{}
+\addcontentsline{toc}{section}{Table des matières}
+
+
+%%% GLOSSARY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{plain}
+
+\section*{Glossaire}
+\addcontentsline{toc}{section}{Glossaire}
+	\input{|"model/gloss.sh"}
+
+
+%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
+
+\section{Introduction}
+\input{part/intro}
+
+
+
+%%% TEXT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ----------------------------------------------------------------------
+% Introduction de l'étude
+% ----------------------------------------------------------------------
+\part{Introduction de l'étude}
+\input{part/etude}
+
+% ----------------------------------------------------------------------
+% Méthode et résolution
+% ----------------------------------------------------------------------
+\part{Méthodes et résolution}
+\input{part/metho}
+
+% ----------------------------------------------------------------------
+% Résultat et discussion
+% ----------------------------------------------------------------------
+\part{Résultats et discussion}
+\input{part/result}
+
+
+%%% CONCLUSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bookmarksetup{startatroot}
+\addtocontents{toc}{\bigskip}
+\newpage
+
+\section{Conclusion}
+\input{part/conclu}
+
+
+%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{plain}
+\pagenumbering{alph}
+
+\section*{Bibliographie \& Webographie}
+\addcontentsline{toc}{section}{Bibliographie \& Webographie}
+\nocite{*}
+\bibliographystyle{alpha}
+\bibliography{input/biblio}
+
+
+%%% ANNEXES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\appendix
+%\newpage
+%\pagenumbering{Roman}
+%\part{Annexe}
+%
+%\section{Documentation des scripts et programmes réalisés}
+
+\end{document}

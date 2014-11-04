@@ -1,0 +1,110 @@
+% ==============================================================================
+\section{Structure d'arbres de partitionnement}
+% ==============================================================================
+
+Certains algorithmes, ou approches algorithmiques, nécessite un partitionnement de l'espace des données pour diviser le travail et n'effectuer que des tâches élémentaires. Le pincipe de partition est proche d'une vision récursive, en effet on divise l'espace de travail tant que l'on ne se retrouve pas dans un cas simple que l'on sait traiter. Ceci permet de chercher le plus proche voisin mais aussi de créer des régions d'intéraction, cette dernière problématique ne nous intéressera pas ici. Le partitionnement est ensuite représenté par la structure d'un arbre comme une arborecense du partitionnement.
+
+\
+
+Deux structures d'abre de partitionnement seront étudiées ici pour recherhcer le plus proche voisin, il s'agit du \emph{kd-tree} et du \emph{quad-tree}. Nous verrons les avantages et les inconvéniants des deux. Chaque n\oe{}ud de l'arbre représente une partition de l'espace, ses fils ses sous-partitions. Plusieurs partitionnements sont envisageables pour obtenir des divisons avec des propriétés plus ou moins intéressantes.
+
+
+%-------------------------------------------------------------------------------
+	\subsection{Définition et propriété de l'espace de données}
+%-------------------------------------------------------------------------------
+
+Avant de parler de l'algorithmie et des structures de données et il est important de parler des espaces dans lesquels nous allons travailler et de ce que nous voulons y faire. Les données que nous allons traiter sont des points dans un espace à 2 dimensions, et nous souhaitons rechercher le plus proche voisin. La définition du plus proche voisin n'est ici pas seulement d'ordre géométrique, en effet il est possible d'ajouter d'autres paramètres. La méthode choisi ici est dans un premier temps d'effectuer une discimination géométrique, puis le dernier choix selon d'autres critères.
+
+
+Il est aussi possible de travailler en 3 dimensions, notre objectif est de travailler sur des sources lumineuses dans le ciel, par conséquent nous nous retrouvons avec deux dimensions d'espace (l'ascension droite et la déclinaison), mais il est aussi possible d'ajouter la magnitude (luminosité) comme dimension. Ainsi nous travaillerions dans un espace à 3 dimensions, dont 2 dimensions d'espace. Cette technique ne sera pas exploité ici car cela donne autant d'importance aux paramètres astrophysiques (ascension droite et déclinaison) qu'à un paramètre photométrique (magnitude) qui est fortement soumis aux erreurs de calibration et des conditions de mesure.
+
+
+\
+
+La généralisation à $k$ dimensions est possible mais elle ne nous intéressera pas mais les différences des structures seront évoquées pour éveiller la curiosité du lecteur.
+
+%-------------------------------------------------------------------------------
+	\subsection{Algorithme de construction}
+%-------------------------------------------------------------------------------
+
+L'algorithme de construction de la structure du \emph{kd-tree} et du \emph{quad-tree} sont similaires, seule l'étape de division différe et est propre à chacune des structures. Le choix de la division implique des propriétés différentes sur les arbres générés. Cette étape sera détaillée en même temps que les différences des deux structures.
+
+\
+
+L'algorithme de construction est, sous sa forme la plus simple, récursif. Celui-ci est décrit dans l'algoritme \ref{algo:build-tree}.
+
+	\begin{algorithm}
+		\caption{Algorithme récursif de construction d'un arbre de partitionnement}
+		\label{algo:build-tree}
+		\begin{algorithmic}[1]
+			\Function{Construire\_Arbre}{$espace$}
+				\If{ nombre de points de l'espace = 0}
+					\Comment{L'espace ne contient pas de source, impossible de diviser}
+					\State \Return $espace$;
+				\ElsIf{ nombre de point dans l'espace = 1}
+					\Comment{L'espace ne contient plus qu'un point, il n'est plus nécessaire de diviser}
+					\State \Return $espace$;
+				\Else
+					\Comment{Il faut diviser l'espace, et construire les sous espaces}
+					\State \Return \Call{Construire\_Arbre}{ \Call{Diviser_Espace}{$espace$} }
+				\EndIf
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+
+Le principe est simple, tant que l'espace contient plus d'une source on construit l'arbre sur les sub-divisions de l'espace. Quand il n'y a plus qu'une ou zéro source, on stope la division.
+
+
+%-------------------------------------------------------------------------------
+	\subsection{Choix de la division}
+%-------------------------------------------------------------------------------
+
+La différence entre la structure du \emph{quad-tree} et du \emph{kd-tree} est la méthode de divison de l'espace. Le partitionnement choisi possède des propriétés dépendante de cette méthode.
+
+		\subsubsection{\emph{quad-tree}}
+% ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La division du \emph{quad-tree} consiste à sub-diviser l'espace en quatre parties en prennant le milieu de chaque côté. Ceci permet de construire un arbre dont chaque n\oe{}ud possède 0 ou 4 fils.
+
+La construction de cette arbre présente l'avantage d'être purement géométrique, ainsi il est possible d'effectuer un premier partitionnement pour utiliser un algorithme plus coûteux en complexité mais pouvant prendre en compte des paramètres plus fins d'association. En effet le plus proche voisin que nous cherchons n'est pas forcément le plus proche voisin géométrique mais le plus proche voisin en terme de ressemblance.
+
+\
+
+Cette structure est généralisable facilement en 3 dimensions et portent le nom d'\emph{oct-tree}, chaque n\oe{}ud ne possède plus 4 mais 8 fils. Il est possible de passer en dimensions $k$ en divisant en 2 chaque axe, et ainsi obtenir $2^{k}$ sous-espace, donc $2^{k}$ fils à chaque n\oe{}ud.
+
+
+Le problème de cette généralisation est la largeur et la profondeur de l'arbre obtenu, en effet si deux sources sont proches, il est parfois nécessaire d'effectuer un nombre important de divisions avant de réussir à séparer deux sources. C'est pour cette raison que cette algorithme ne sera utilisé que pour effectuer un premier partitionnement pour utiliser un algorithme plus lent sur des plus petites portions.
+
+
+		\subsubsection{\emph{kd-tree}}
+% ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La division du \emph{kd-tree} consiste à sub-diviser l'espace en tenant compte du nombre de points. En effet on remarque que le \emph{quad-tree} est très rarement équilibré, de nombreux n\oe{}uds ne servent pas, etc. Ces problèmes ont une cause commune qui est la division selon des critères géométriques sans tenir compte des données que l'espace contient. Ainsi la division du \emph{kd-tree} s'effectue suivant la médiane. Cette séparation permet d'obtenir deux sous-espaces contenant le même nombre de points plus ou moins 1 --- si l'espace contient un nombre impair de points.
+
+Le problème de la médiane est que cette séparation s'effectue dans une liste, donc un espace à 1 dimension. La solution consiste à choisir à chaque itération une dimension selon laquelle nous effecturons la division. Ce choix s'effectue selon la parité de l'itération, si l'itération est pair nous effectuerons la division selon l'axe des $x$ (ascension droite dans notre cas), si l'itération est impair selon l'axe des $y$ (déclinaison).
+
+\
+
+Pour le cas de $k$ dimensions, le choix de la dimension s'effectue selon la congruence de l'itération modulo $k$, cela permet d'avoir une division régulière sur toutes les dimensions. La structure du \emph{kd-tree} évolue très bien au passage des dimensions supérieures puisqu'il s'agit toujours d'un arbre binaire dont la profondeur n'est que fonction du nombre de données. Quelque soit le nombre de dimensions la profondeur reste égale à $\log_{2}(n)$ où $n$ représente le nombre de points.
+
+
+
+% ==============================================================================
+\section{Dérécursification}
+% ==============================================================================
+
+L'algorithme \ref{algo:build-tree} est un algorithme dit récursif, cela signifie qu'il fait appelle à lui-même dans sa résolution. C'est le cas par exemple de la définition de la fonction factorielle.
+	\begin{displaymath}
+		n! = n \times (n-1)! \\
+		0! = 1
+	\end{displaymath}
+Lors de l'implémentation d'une telle fonction, celle-ci se rappelle elle-même jusqu'à un cas que l'on sait traiter c'est à dire factorielle de zéro. D'un point de vu informatique cela indique que nous ajoutons un appel de fonction dans la pile d'exécution. L'ajout d'information dans la pile d'exécution nuit à la performance mais aussi à la modularité du programme. Pour ces raisons il peut être intéressant de récursifier un algorithme. Cette technique revient à gérer soit même la pile d'exécution en ne sauvant pas tout l'appelle à la fonction mais seulement son résultat intermédiaire. Le résultat final est obtenu en dépilant les informations préalablement stockée dans la pile.
+
+
+%-------------------------------------------------------------------------------
+	\subsection{Objectif}
+%-------------------------------------------------------------------------------
+
+Notre algorithme est plus simple a comprendre sous sa forme récursive, et les seuls modifications que nous voulons apporter sont des limitations quant au nombre d'itérations. Ainsi l'aspect modulaire de la dérécursification ne nous intéresse pas, seul l'aspect performance nous intéresse.
+
+
