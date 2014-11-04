@@ -1,0 +1,17 @@
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.idx
+*.loa
+*.log
+*.lol
+*.dvi
+*.pdf
+
+# C/Cpp
+*.o
+
+# Fichiers de sauvegarde
+*~
+
