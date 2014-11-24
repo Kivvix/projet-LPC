@@ -17,7 +17,7 @@ function headered( $id , $title )
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="LSST LPC" />
 	<meta name="author" content="Josselin Massot" />
-	
+
 	<link rel="icon" href="favicon.ico" />
 
 	<title><?php echo $title; ?></title>
@@ -44,8 +44,8 @@ function headered( $id , $title )
 				<span class="icon-bar" ></span>
 				<span class="icon-bar" ></span>
 			</button>
-			
-			<a class="navbar-brand" href="index.html" >Projet LSST - ISIMA</a>
+
+			<a class="navbar-brand" href="index.php" >Projet LSST - ISIMA</a>
 
 		</div>
 		<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
