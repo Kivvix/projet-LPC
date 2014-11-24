@@ -1,10 +1,10 @@
 <?php
 
-include ".php/functions.php";
+require ".php/functions.php";
 
-if ( isset($_GET["id"] ) {
+if ( isset($_GET["id"]) ) {
 	$id = $_GET["id"];
-} else
+} else {
 	$id = 0;
 }
 
