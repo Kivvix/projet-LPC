@@ -1,0 +1,31 @@
+<div class="jumbotron" ><div class="container" >
+	<h1>Projet LS<em>STack</em> <small>Documentation</small></h1>
+	<p>L'objectif de ce site est de stocker toute la documentation est les données importante du projet que j'ai pu effectuer au LPC. Celui-ci a pour but d'étudier la qualité des données générées lors de la <code>DC-2013</code>.</p>
+
+	<div class="text-center container" ><div class="btn-group btn-group-lg" role="group" aria-label="...">
+		<a href="https://github.com/Kivvix/projet-LPC/archive/master.zip" class="btn btn-info"><span class="glyphicon glyphicon-download-alt" ></span> Télécharger archive zip</a>
+		<a href="https://github.com/Kivvix/projet-LPC" class="btn btn-info"><span class="glyphicon glyphicon-tag" ></span> Projet GitHub</a>
+	</div></div>
+</div></div>
+
+<section class="container" >
+	<h1>Méthodes d'évaluation</h1>
+	<p>Lors de ce projet différentes méthodes pour évaluer la qualité des données générée par le <code>Stack</code> furent utilisées. La comparaison à un jeu de données déjà existant, c'est le rôle de la partie <code>compareSrc</code> et l'étude de la stabilité temporelle des données qui utilise le même moteur de calcul. La quantité de données nécessaire à ces études, et celles générées sont importantes, ainsi une partie du projet est consacré à l'étude d'une base de données pour stocker ceci : <code>stockSrc</code>.</p>
+  <div class="row" >
+	<div class="col-md-4" >
+	  <h2><code>compareSrc</code></h2>
+	  <p>Cette partie est consacrée à la documentation du programme C++ permettant la comparaison d'un jeu de données à un autre. L'algorithmie utilisée est celle de la recherche de plus proche voisin. Différents paramètres sont ajoutés pour effectuer soit la comparaison des données du Stack avec SDSS, ou la comparaison temporelle des données ou effectuer l'association inter-filtre des données du Stack.</p>
+	  <p><a class="btn btn-info" href="compareSrc.html" role="button" >Voir plus de détails &raquo;</a></p>
+	</div>
+	<div class="col-md-4" >
+	  <h2><code>stockSrc</code></h2>
+	  <p>Cette partie est consécrée à la documentation des différents scripts permettant la création, la lecture et l'écriture de la base de données. Le SGBD utilisé est MySQL, et certains scripts sont écrits en Python.</p>
+	  <p><a class="btn btn-info" href="stockSrc.html" role="button" >Voir plus de détails &raquo;</a></p>
+   </div>
+	<div class="col-md-4" >
+	  <h2>Autres</h2>
+	  <p>Il s'agit ici de présenter tout ce qui n'est pas directement lié au code, ainsi on pourra lire ici des informations sur les objectifs de ce projet, ainsi que des explications plus lié au contexte et non la programmation.</p>
+	  <p><a class="btn btn-info" href="autre.html" role="button" >Voir plus de détails &raquo;</a></p>
+	</div>
+  </div><!-- .row -->
+</section>

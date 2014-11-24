@@ -1,0 +1,26 @@
+<section class="container" >
+
+<h1>Informations diverses</h1>
+<p>Cette page a pour objectif de présenter les objectifs de la programmation. Ainsi nous présenterons ici l'aspect physique de la pogrammation.</p>
+
+
+<h1>Sources et objets</h1>
+<p>Tout le travail effectuer pendant ce projet tourne autour de sources et non d'objets astronomiques, mais par moment nous faisons référence à des objets, il est donc nécessaire de faire la différence entre les deux.</p>
+
+<h2>Les objets</h2>
+<p>D'un point de vu astrophysique un objet est l'ensemble des données physiques que nous connaissons sur un corps physique. Ce sont des caractérisque physico-chimique de l'astre, des indications sur sa position dans le ciel et sa parallaxe, sa magnitude et sa variation de magnitude.</p>
+
+<h2>Les sources</h2>
+<p>Les sources quant à elles sont les données récoltés sur une prise de vue du ciel. Cela correspond à toutes les sources lumineuses visibles sur une photo (étoiles, galaxies, planètes, OVNI, rayons cosmiques, artefacte de logiciel). Ce sont donc ces données qui sont accessibles, les objets sont construits à partir d'une série d'étude de sources.</p>
+
+
+<h1>Objectif du projet</h1>
+<p>Le projet LSST a développer un logiciel de traitement d'image, le <em>Stack</em>, pour analyser les données du futur télescope du projet. Ce logiciel a été testé sur les données brutes du télescope SDSS ancien télescope américain de surveillance du ciel, lors de l'été 2013. Cette expérience porte le nom de <i lang="en" >Data Challenge Summer 2013</i> abrégé en <samp>DC-2013</samp>.</p>
+<p>L'objectif de ce projet, et d'évaluer la qualité des données produites lors de la <samp>DC-2013</samp> et ainsi décider de la pertinance de l'algorithme de traitement du <em>Stack</em>. Différentes méthodes d'évaluation sont mises en oeuvre.</p>
+<ul>
+<li>La première méthode d'évaluation repose sur la comparaison des données avec les données officielles de SDSS. Ainsi nous tentons d'associer à une source identifiée par SDSS, qui appartient à notre base de données de référence, une source identifiée par le <em>Stack</em>, qui appartient à la base de données à tester.</li>
+<li>La deuxième méthode réside dans l'étude de la stabilité temporelle des résultats. En effet le télescope SDSS, télescope de surveillance du ciel, a balayé à plusieurs reprise la même zone du ciel, par conséquent, des sources identifées sur différentes photo représente le même objet à des instants différents. Ici nous nous intéressons à tracer un objet à travers ses représenant à différents moment. Cela permet plus ou moins de reconstruire un objet, si nous effectuons ce travail sur la globalité des sources nous pourrions construire un catalogue d'objets. Nous nous limiterons ici à observer la stabilité des coordonnées et de la magnitude.</li>
+<li>Un autre travail a effectuer sur les données de la <samp>DC-2013</samp> consiste à effectuer l'association d'une même source sur les données des 5 filtres. En effet le ciel est observé sur 5 filtres différents, cela permet d'étudier certains phénomènes plus visible dans certaines longueurs d'onde que d'autre.</li>
+</ul>
+
+</section> <!-- .container -->

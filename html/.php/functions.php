@@ -72,6 +72,13 @@ function headered( $id , $title )
 
 function footered()
 { ?>
+	<section class="container" >
+		<hr />
+		<footer>
+			<p><a href="#top" class="green nohover glyphicon glyphicon-arrow-up" ></a> &nbsp;&nbsp;&nbsp; <a href="mailto:josselin.massot at gmail.com">Josselin Massot &nbsp; <span class="glyphicon glyphicon-envelope" ></span></a> &nbsp; &nbsp; | &nbsp; &nbsp; <a href="mailto:vulpescu at clermont.in2p3.fr" >Bogdan Vulpescu &nbsp; <span class="glyphicon glyphicon-envelope" ></span></a> &nbsp; &nbsp; | &nbsp; &nbsp; <a href="http://clrwww.in2p3.fr" >LPC</a></p>
+		</footer>
+	</section>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>

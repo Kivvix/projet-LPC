@@ -26,7 +26,7 @@ switch ( $id ) {
 }
 
 headered( $id , $title );
-include $title."html";
+include "page/".$title.".html";
 footered();
 
 ?>
