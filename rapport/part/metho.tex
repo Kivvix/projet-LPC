@@ -27,7 +27,7 @@ Les sources que nous analysons ont été observés à travers différents filtre
 
 
 % ----------------------------------------------------------------------
-	\subsection{Structure de la base}
+	\subsection{Modèles relationnels de la base de données}
 % ----------------------------------------------------------------------
 
 Deux modèles relationnels de la structure de la base de données ont été pensé. Le premier est un modèle classique et fiable, il s'agit du modèle dit « en étoile ». Le second est un modèle pensé pour optimiser le temps d'obtention des données de l'association, mais touche, à chaque ajout d'algorithme d'association, au modèle relationnel.
@@ -68,15 +68,23 @@ Le problème est la modification du modèle relationnel qui peut entraîner une 
 	\subsection{Objectif}
 % ----------------------------------------------------------------------
 
-Pouvoir tester les algorithmes d'association, explication du tri en vrai position, faux positif, vrai négatif et faux négatif.
+Il est courant d'effectuer des tests à partir de jeux d'essais, ceux-ci représente des cas standards d'utilisation ou permettent aussi de tester les limites d'un programme.
+
+Dans notre cas le jeu d'essai est un ensemble de deux bases de données de sources. Une de ces bases est générée à partir de la première en ajoutant un bruit normal. Par conséquent chacune des sources à tester est généré à partir d'une de la base de référence, nos couples $(SDSS ; Stack)$ sont prédéfinis. L'intérêt est donc de vérifier que nos algorithmes les associent correctement.
+
+Après avoir fait tourner les programmes sur le jeu d'essai, nous meusurons trois quantités : les couples correctement formés, les couples erronés et les sources isolées. Il est important de maximiser la quantité des couples corrects. La quantité de minimiser en priorité est les couples erronés, il est préférable d'obtenir une absence d'information en obtenant une source seule plutôt qu'une mauvaise information.
+
+\ 
+
+À partir de ces résultats il est possible d'effectuer une ou plusieurs méthode d'optimisation en modifiant des paramètres d'entrée de nos algorithmes. La méthode la plus efficace est relativement simple à mettre en \oe{}uvre est la méthode du \emph{recuit-simulé}. L'absence de notion de voisinage dans le choix des paramètres complique l'utilisation d'une telle méthode car elle est conditionné par les tirages aléatoires des paramètres.
 
 % ----------------------------------------------------------------------
 	\subsection{Contrainte du jeu}
 % ----------------------------------------------------------------------
 
-Il faut que le jeu d'essai soit proche de ce que l'on veut tester, définir un écrat moyen, un écart maximal (loi normal ?), l'ajout d'erreur ?
+Le jeu d'essai doit comporter certaines contraintes pour représenter au mieux la réalité. En effet il est possible qu'un programme associe plus facilement une source située en haut à gauche de la première, or si la génération aléatoire préconise ce placement, la détection d'un tel phénomène sera invisible. Il est donc important de posséder un bon générateur aléatoire.
 
-Au moins une des base est généré aléatoirement, donc limitation par le générateur de nombre pseudo aléatoire qui peut ou non faire apparaître des comportements.
+Il est aussi important de définir l'écart moyen et maximal prévu entre les données de SDSS et les résultats du \stack{} lors de la \DC{}. Le plus simple pour cela est d'utiliser les résultats déjà obtenu lors de mon précédent stage au LPC.
 
 
 % ======================================================================

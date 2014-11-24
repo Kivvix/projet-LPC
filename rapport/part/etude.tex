@@ -94,10 +94,13 @@ Le problème que nous rencontrons avec ces fichiers texte est l'accès lent et d
 	\subsection{Comparaison des données}
 % ----------------------------------------------------------------------
 
-La comparaison des résultats du \stack{} lors de la \DC{} et ceux de SDSS s'effectue par association. En effet à chaque élément découvert par SDSS on essaie d'y associer un élement traité par le \stack{}. L'association s'effectue selon des critères à la fois astrométriques (les coordonnées de nos sources lumineuses), mais aussi photométrique (la luminosité de nos sources lumineuses). Par conséquent cela correspond à de la recherche de ressemblance ou en tout cas de la recherche de plus proche voisin.
+La comparaison des résultats du \stack{} lors de la \DC{} et ceux de SDSS s'effectue par association. En effet à chaque élément découvert par SDSS on essaie d'y associer un élement traité par le \stack{}. Nous allons aussi effectuer un travil d'association ente les données du \stack{}. La première association (avec les données de SDSS) permet de vérifier la vraissemblance du logiciel de traitement d'images par rapport à des données dites de référence. La seconde association permet de comparer des résultats correspondant à des données sur la même portion de ciel, cela permet de vérifier la stabilité temporelle des données.
 
-La recherche de plus proche voisin est un sujet vaste qui s'applique aussi bien à des domaines comme %JE NE SAIS PLUS, AJOUTER ICI UNE LISTE DE DOMAINES AINSI QU'UNE BRÈVE ESQUISSE DE PERSONNES QUI ONT PU TRAVAILLER SUR LE SUJET.
+L'association s'effectue selon des critères à la fois astrométriques (les coordonnées de nos sources lumineuses), mais aussi photométrique (la luminosité de nos sources lumineuses). Par conséquent cela correspond à de la recherche de ressemblance ou en tout cas de la recherche de plus proche voisin.
 
+\ 
+
+La recherche de plus proche voisin est un sujet vaste qui s'applique aussi bien à des domaines comme la détection de forme, l'analyse de ressemblance mais aussi des détecteurs de collisions.
 
 % ======================================================================
 \section{Outils et prévisions}
@@ -135,7 +138,33 @@ La partie base de données implique le choix d'un système de gestion de base de
 	\subsection{Outils de gestion de projet}
 % ----------------------------------------------------------------------
 
-Méthode kanban en ligne (chercher ou développer un outils pour, et proposer un accès à Bogdan).
-% Il y a des outils en ligne gratuit pour faire du kanban mais je trouve pas ça aussi génial que sur papier. Trouver un truc cool pour pouvoir faire ça bien.
+	\begin{ganttchart}{0}{13}
+		\gantttitle{2014}{8}
+		\gantttitle{2015}{6}\\
+		\gantttitlelist{9,...,12,1,2,3}{2} \\
+		
+		\ganttgroup{Aspect théorique}{0}{6} \\
+		\ganttbar{Recherche de l'existant}{2}{4} \\
+		\ganttbar{Cahier des charges}{0}{4} \\
+		\ganttbar{Implémentation}{2}{6} \\
+		\ganttbar{Recherche de modèle BDD}{2}{6} \\
+		
+		\ganttgroup{Mise en production}{7}{12} \\
+		\ganttbar{Débugage}{6}{10} \\
+		\ganttbar{Tests}{6}{10} \\
+		\ganttbar{Analyse des résultats}{10}{12} \\
+	\end{ganttchart}
 
-Diagramme de Gantt (pas le choix y'a Mouzat), permet planifier des tâches avec des "deadlines", d'affecter une tâche à une équipe, mais ici je suis seul à travailler sur le projet, un diagramme prévisionnel est disponible ici mais il est fortement hypothétique car je suis incapable de prévoir certains inprévu technique dû à mon statut d'externe au LPC. Je suis obligé de passer par certaines machines etc.
+%\newgantttimeslotformat{stardate}{%
+%\def\decomposestardate##1.##2\relax{%
+%\def\stardateyear{##1}\def\stardateday{##2}%
+%}%
+%\decomposestardate#1\relax%
+%\pgfcalendardatetojulian{\stardateyear-01-01}{#2}%
+%\advance#2 by-1\relax%
+%\advance#2 by\stardateday\relax%
+%}
+
+%\begin{ganttchart}[hgrid, vgrid, time slot format=stardate]{2014.9.1}{2015.3.15}
+%\gantttitlecalendar{year, month=name} \\
+%\end{ganttchart}
