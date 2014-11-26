@@ -10,6 +10,7 @@
 from config import *
 
 import os, sys
+import time
 
 import MYSQLdb
 
@@ -45,6 +46,7 @@ l_ra  = np.array()
 l_dec = np.array()
 l_mag = np.array()
 
+# parcours des résultats de la requête et remplissage des tableaux
 for row in cur.fetchall() :
 	np.append( l_id  , row[0] )
 	np.append( l_ra  , row[1] )
@@ -77,6 +79,7 @@ s_r   = np.array()
 s_i   = np.array()
 s_z   = np.array()
 
+# parcours des résultats de la requête et remplissage des tableaux
 for row in cur.fetchall() :
 	np.append( s_id  , row[0] )
 	np.append( s_ra  , row[1] )
@@ -91,10 +94,10 @@ for row in cur.fetchall() :
 s_cols  = pyfits.ColDefs([ pyfits.Column( name='id'      , format='I' , array=s_id  ) ,
                            pyfits.Column( name='ra'      , format='D' , array=s_ra  ) ,
                            pyfits.Column( name='dec'     , format='D' , array=s_dec ) ,
-                           pyfits.Column( name='ABmag_u' , format='D' , array=s_u   )
-                           pyfits.Column( name='ABmag_g' , format='D' , array=s_g   )
-                           pyfits.Column( name='ABmag_r' , format='D' , array=s_r   )
-                           pyfits.Column( name='ABmag_i' , format='D' , array=s_i   )
+                           pyfits.Column( name='ABmag_u' , format='D' , array=s_u   ) ,
+                           pyfits.Column( name='ABmag_g' , format='D' , array=s_g   ) ,
+                           pyfits.Column( name='ABmag_r' , format='D' , array=s_r   ) ,
+                           pyfits.Column( name='ABmag_i' , format='D' , array=s_i   ) ,
                            pyfits.Column( name='ABmag_z' , format='D' , array=s_z   ) ])
 
 sdss_hdu = pyfits.BinTableHDU.from_columns( s_cols )
@@ -105,11 +108,12 @@ sdss_hdu = pyfits.BinTableHDU.from_columns( s_cols )
 
 ## Création du header
 head = pyfits.Header()
-head['AUTHOR']  = 'Josselin Massot'
-head['CONTACT'] = 'josselin.massot@gmail.com'
-head['TUTOR']   = 'Bogdan Vulpescu (vulpescu@clermont.in2p3.fr)'
-head['COMMENT'] = 'Saving of SDSS and Stack sources of one sky region of Stripe 82'
-head['REGION']  = '( ' + ra_min + ' ; ' + dec_min + ' ) to ( ' + ra_max + ' ; ' + dec_max + ' )'
+head['author']  = 'Josselin Massot'
+head['contact'] = 'josselin.massot@gmail.com'
+head['tutor']   = 'Bogdan Vulpescu (vulpescu@clermont.in2p3.fr)'
+head['date']    = 'Create at: ' + time.strftime('%Y-%m-%d :: %H:%M:%S',time.localtime())
+head['comment'] = 'Saving of SDSS and Stack sources of one sky region of Stripe 82'
+head['region']  = '( ' + ra_min + ' ; ' + dec_min + ' ) to ( ' + ra_max + ' ; ' + dec_max + ' )'
 
 
 hdulist = pyfits.HDUList([ head , lsst_hdu , sdss_hdu ])

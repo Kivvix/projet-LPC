@@ -24,8 +24,8 @@ all: complet
 $(REP):
 	@$(MAKE) -C $@ $(MAKECMDGOALS)
 
-propre: $(REP)
-	@$(ECHO) “suppression des fichiers de compilation”
+clean: $(REP)
+	@$(ECHO) "suppression des fichiers de compilation"
 	@# fichiers de compilation latex
 	@rm -f *.log *.aux *.dvi *.toc *.lot *.lof *.loa *.lol *.out *.idx
 	@# fichiers de bibtex
