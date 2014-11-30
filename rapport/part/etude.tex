@@ -103,7 +103,7 @@ L'association s'effectue selon des critères à la fois astrométriques (les coo
 La recherche de plus proche voisin est un sujet vaste qui s'applique aussi bien à des domaines comme la détection de forme, l'analyse de ressemblance mais aussi des détecteurs de collisions.
 
 % ======================================================================
-\section{Outils et prévisions}
+\section{Outils du projet}
 % ======================================================================
 
 % ----------------------------------------------------------------------
@@ -121,39 +121,44 @@ Du fait de sa vitesse d'exécution le \Cpp{} est souvent utilisé pour des moteu
 
 			\paragraph{\Python}
 Le langage \Python{} est un langage interprété, ce qui signifie qu'au moment de l'exécution, chaque ligne est traduite en langage machine avant d'être exécutée, et ce à chaque exécution d'un même script \Python. Les performances du \Python{} sont jusqu'à 100$\times$ moindre que celles du \Cpp{} comme le montre la figure~\ref{fig:cpp-py}.
+
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.8\textwidth]{img/cpp-py.png}
-		\caption[\emph{Benchmark} entre \Cpp{} et \Python]{Étude de \emph{benchmark} entre \Cpp{} et \Python{}. Cette étude compare les performances de \Python{} par rapport au \Cpp{} en effectuant le quotient \fraction{Performance \Cpp}{Performance \Python}, donc les résultats en dessous de 1 sont en faveur de \Cpp{}, ceux au dessus de 1 en faveur de \Python{}. Les tests s'effectuent en 3 catégories, temps d'exécution, utilisation de la mémoire et nombre de lignes de code. Chaque barre de l'histogramme dans une catégorie correspond à un algorithme (\emph{n-body}, \emph{mendelbrot}, \emph{binary-trees}, etc.). Source : \url{http://benchmarksgame.alioth.debian.org/}}
+		\caption[Comparaison des performances entre \Cpp{} et \Python]{Cette étude compare les performances de \Python{} par rapport au \Cpp{} en effectuant le quotient \fraction{Performance \Cpp}{Performance \Python}, donc les résultats en dessous de 1 sont en faveur de \Cpp{}, ceux au dessus de 1 en faveur de \Python{}. Les tests s'effectuent en 3 catégories, temps d'exécution, utilisation de la mémoire et nombre de lignes de code. Chaque barre de l'histogramme dans une catégorie correspond à un algorithme (\emph{n-body}, \emph{mendelbrot}, \emph{binary-trees}, etc.). Source : \url{http://benchmarksgame.alioth.debian.org/}}
 		\label{fig:cpp-py}
 	\end{figure}
+
 \Python{} est certes moins performant que \Cpp{}, mais il a l'avantage de facilité la programmation avec un nombre de lignes de code moins élevé, des fonctions haut niveau dans la bibliothèque standard et l'interpréteur qui permet un débogage plus rapide. \Python{} est donc privilégié pour la partie interface ainsi que l'ordonnancement des différentes tâches, laissant le cœur du calcul à \Cpp{}.
 
-%TODO: vérifier le choix définitif du SGBD, PostgreSQL permet d'effectuer plus facilement des requêtes en 2D, à vérifier par un petit benchmark.
-		\paragraph{MySQL}
-La partie base de données implique le choix d'un système de gestion de base de données (SGBD), celui-ci est MySQL. Ce choix est imposé par l'installation de ce logiciel dans l'environnement de développement qu'est le \CC{}.
+			\paragraph{MySQL}
+La partie base de données implique le choix d'un système de gestion de base de données (SGBD), celui-ci est MySQL. Ce choix est la conclusion d'une étude sur les SGBD disposant d'une communauté importante. Pour de multiples raisons un logiciel libre est privilégié. Ainsi MySQL et PostgreSQL furent étudié, les deux SGBD disposant des plus grandes communautés. Le choix final se porta sur MySQL à cause d'une connaissance du logiciel par l'équipe devant utiliser les produits de projet à la fin de celui-ci.
+
+MySQL est un projet apparu en 1995 et est devenu rapidement l'une des bases de données les plus utilisées aussi bien par le grand public que les professionnels où elle fait conccurence à \emph{Oracle} ou \emph{Microsoft SQL Server}.
+
+L'aspect base de données ne sera pas la partie la plus détaillée de ce rapport puisqu'il ne s'agit pas de l'aspect principal de ce projet. L'utilisation de NoSQL\footnote{NoSQL : (\emph{Not Only SQL}) est un paradigme de base de données ne faisant pas intervenir seulement SQL.} n'a pas été envisagé par manque de connaissances sur le sujet.
 
 
 % ----------------------------------------------------------------------
-	\subsection{Outils de gestion de projet}
+	\subsection{Outils de gestion du projet}
 % ----------------------------------------------------------------------
 
-	\begin{ganttchart}{0}{13}
-		\gantttitle{2014}{8}
-		\gantttitle{2015}{6}\\
-		\gantttitlelist{9,...,12,1,2,3}{2} \\
-		
-		\ganttgroup{Aspect théorique}{0}{6} \\
-		\ganttbar{Recherche de l'existant}{2}{4} \\
-		\ganttbar{Cahier des charges}{0}{4} \\
-		\ganttbar{Implémentation}{2}{6} \\
-		\ganttbar{Recherche de modèle BDD}{2}{6} \\
-		
-		\ganttgroup{Mise en production}{7}{12} \\
-		\ganttbar{Débugage}{6}{10} \\
-		\ganttbar{Tests}{6}{10} \\
-		\ganttbar{Analyse des résultats}{10}{12} \\
-	\end{ganttchart}
+%	\begin{ganttchart}{0}{13}
+%		\gantttitle{2014}{8}
+%		\gantttitle{2015}{6}\\
+%		\gantttitlelist{9,...,12,1,2,3}{2} \\
+%		
+%		\ganttgroup{Aspect théorique}{0}{6} \\
+%		\ganttbar{Recherche de l'existant}{2}{4} \\
+%		\ganttbar{Cahier des charges}{0}{4} \\
+%		\ganttbar{Implémentation}{2}{6} \\
+%		\ganttbar{Recherche de modèle BDD}{2}{6} \\
+%		
+%		\ganttgroup{Mise en production}{7}{12} \\
+%		\ganttbar{Débugage}{6}{10} \\
+%		\ganttbar{Tests}{6}{10} \\
+%		\ganttbar{Analyse des résultats}{10}{12} \\
+%	\end{ganttchart}
 
 %\newgantttimeslotformat{stardate}{%
 %\def\decomposestardate##1.##2\relax{%

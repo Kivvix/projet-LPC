@@ -1,0 +1,54 @@
+digraph g {
+graph [
+	rankdir = "LR"
+];
+node [
+	fontsize = "16"
+	shape = "ellipse"
+];
+edge [
+	dir = none
+];
+
+srcSTACK [
+	label = "srcSTACK|#id,\lcoord \lfilter \lABmag \lfield data\l"
+	shape = "record"
+];
+
+srcSDSS [
+	label = "srcSDSS|#id,\lcoord\lABmag by filter\l (u,g,r,i,z) \lfield data\l"
+	shape = "record"
+];
+
+algo [
+	label = "algorithms|#id,\lalgorithm data\l (author, date, url...)\l"
+	shape = "record"
+];
+
+matching [
+	label = "matching|#id,\l_idSDSS,\l_idSTACK,\l_idAlgo\l"
+	shape = "record"
+];
+
+invis1 [
+	label = ""
+	shape = "record"
+];
+invis2 [
+	label = ""
+	shape = "record"
+];
+
+srcSTACK -> matching [ ];
+srcSDSS  -> matching [ ];
+algo     -> matching [ ];
+
+srcSTACK -> srcSDSS  [ style = nvis ];
+
+invis1   -> srcSTACK [ style = nvis ];
+invis1   -> algo     [ style = nvis ];
+invis1   -> matching [ style = invis ];
+srcSDSS  -> invis2   [ style = nvis ];
+algo     -> invis2   [ style = nvis ];
+matching -> invis2   [ style = invis ];
+}

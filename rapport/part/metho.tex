@@ -39,13 +39,20 @@ La base de données que nous souhaitons construire doit stocker à la fois les d
 		\subsubsection{Modèle en étoile}
 % ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Il s'agit d'un modèle avec 4 tables. Tout d'abord deux tables pour stocker nos sources, une table pour les sources du \stack{} et une pour les sources de SDSS. Ces tables sont crées et fixées lors de la récupération des données.
+Il s'agit d'un modèle avec 4 tables. Tout d'abord deux tables pour stocker nos sources, une table pour les sources du \stack{} (\texttt{srcSTACK}) et une pour les sources de SDSS (\texttt{srcSDSS}). Ces tables sont crées et fixées lors de la récupération des données.
 
-Une table est réservée pour les informations relatives aux algorithmes et contiendra des données comme le nom de l'algorithme, l'auteur, ainsi que la méthode utilisée par celui-ci, dans la pratique seul l'identifiant de l'algorithme nous intéressera.
+Une table est réservée pour les informations relatives aux algorithmes (\texttt{algorithms}) et contiendra des données comme le nom de l'algorithme, l'auteur, ainsi que la méthode utilisée par celui-ci, dans la pratique seul l'identifiant de l'algorithme nous intéressera.
 
-Enfin les données relatives aux résultats de ces algorithmes sont tous stockés dans une même table. Ces données sont associées à un identifiant unique, et contiennent l'identifiant de la sources du \stack{} que l'on associe et celui de la source de SDSS associée, mais aussi l'identifiant de l'algorithme utilisé.
+Enfin les données relatives aux résultats de ces algorithmes sont tous stockés dans une même table (\texttt{matching}). Ces données sont associées à un identifiant unique, et contiennent l'identifiant de la sources du \stack{} que l'on associe et celui de la source de SDSS associée, mais aussi l'identifiant de l'algorithme utilisé.
 
-\ 
+Les informations sur ces tables est résumé dans la figure \ref{fig:bdd_star} sous la forme d'un diagramme.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/bdd_star.png}
+		\caption[Modèle relationnel en étoile]{Modèle relationnel en étoile pour stocker les sources identifiées par SDSS et le \stack{}, ainsi que les informations relatives aux algorithmes et l'association effectuée.}
+		\label{fig:bdd_star}
+	\end{figure}
 
 Les deux tables contenant les sources ont une taille similaire $n$, par conséquent la table contenant les résultats de l'association contiendra $n$ données par nouvel algorithme si les algorithmes utilisés n'associent une source qu'à une seule source. Si un algorithme associe une source à plusieurs sources, ces données sont tout simplement stockées à l'aide de plusieurs identifiant unique dans notre base.
 
@@ -55,7 +62,14 @@ Les deux tables contenant les sources ont une taille similaire $n$, par conséqu
  
 Il s'agit d'un modèle avec 3 tables. Comme précédement deux tables sont dédiées au stockage des sources, ainsi qu'une table pour les informations des algorithmes. Mais contrairement au modèle en étoile, on agit sur les deux tables contenant les sources en ajoutant une colonne par algorithme et en y stockant l'identifiant de la source associée. Ceci permet d'obtenir directement la liste des sources de l'autre base associées à une source.
 
-\ 
+Les informations sur ces tables est résumé dans la figure \ref{fig:bdd_colvar} sous la forme d'un diagramme.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/bdd_colvar.png}
+		\caption[Modèle relationnel à colonnes variables]{Modèle relationnel à nombre de colonnes variables pour stocker les sources identifiées par SDSS et le \stack{}, ainsi que les informations relatives aux algorithmes et l'association effectuée.}
+		\label{fig:bdd_colvar}
+	\end{figure}
 
 Le problème est la modification du modèle relationnel qui peut entraîner une perte des données ou des lenteurs d'accès dû à l'ajout de données sur chaque ligne de la base.
 
@@ -70,7 +84,7 @@ Le problème est la modification du modèle relationnel qui peut entraîner une 
 
 Il est courant d'effectuer des tests à partir de jeux d'essais, ceux-ci représente des cas standards d'utilisation ou permettent aussi de tester les limites d'un programme.
 
-Dans notre cas le jeu d'essai est un ensemble de deux bases de données de sources. Une de ces bases est générée à partir de la première en ajoutant un bruit normal. Par conséquent chacune des sources à tester est généré à partir d'une de la base de référence, nos couples $(SDSS ; Stack)$ sont prédéfinis. L'intérêt est donc de vérifier que nos algorithmes les associent correctement.
+Dans notre cas le jeu d'essai est un ensemble de deux bases de données de sources. Une de ces bases est générée à partir de la première en ajoutant un bruit normal. Par conséquent chacune des sources à tester est généré à partir d'une de la base de référence, nos couples $(SDSS\,;\,Stack)$ sont prédéfinis. L'intérêt est donc de vérifier que nos algorithmes les associent correctement.
 
 Après avoir fait tourner les programmes sur le jeu d'essai, nous meusurons trois quantités : les couples correctement formés, les couples erronés et les sources isolées. Il est important de maximiser la quantité des couples corrects. La quantité de minimiser en priorité est les couples erronés, il est préférable d'obtenir une absence d'information en obtenant une source seule plutôt qu'une mauvaise information.
 
@@ -83,6 +97,14 @@ Après avoir fait tourner les programmes sur le jeu d'essai, nous meusurons troi
 % ----------------------------------------------------------------------
 
 Le jeu d'essai doit comporter certaines contraintes pour représenter au mieux la réalité. En effet il est possible qu'un programme associe plus facilement une source située en haut à gauche de la première, or si la génération aléatoire préconise ce placement, la détection d'un tel phénomène sera invisible. Il est donc important de posséder un bon générateur aléatoire.
+
+%%TODO: parler de la RNG
+On considère généralement que le générateur de nombres pseudo-aléatoires par défaut n'est pas bon\dots
+% expliquer pourquoi, en quoi on considère qu'il n'est pas bon
+% et parler rapidement du fait qu'il existe d'autres générateurs de nombres pseudo-aléatoires
+% peut-être rajouter à un endroit pourquoi on parle de pseudo-aléatoire et pas d'aléatoire
+
+\ 
 
 Il est aussi important de définir l'écart moyen et maximal prévu entre les données de SDSS et les résultats du \stack{} lors de la \DC{}. Le plus simple pour cela est d'utiliser les résultats déjà obtenu lors de mon précédent stage au LPC.
 
