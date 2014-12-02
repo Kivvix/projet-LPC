@@ -1,4 +1,4 @@
-# LaTeX
+## LaTeX
 *.aux
 *.bbl
 *.blg
@@ -13,9 +13,12 @@
 *.dvi
 *.pdf
 
-# C/Cpp
+## C/Cpp
 *.o
 
-# Fichiers de sauvegarde
+## Python
+*.pyc
+
+## Fichiers de sauvegarde
 *~
 
