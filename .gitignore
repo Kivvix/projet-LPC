@@ -4,8 +4,12 @@
 *.blg
 *.idx
 *.loa
+*.lof
 *.log
 *.lol
+*.lot
+*.toc
+
 *.dvi
 *.pdf
 
