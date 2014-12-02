@@ -98,15 +98,24 @@ Après avoir fait tourner les programmes sur le jeu d'essai, nous meusurons troi
 
 Le jeu d'essai doit comporter certaines contraintes pour représenter au mieux la réalité. En effet il est possible qu'un programme associe plus facilement une source située en haut à gauche de la première, or si la génération aléatoire préconise ce placement, la détection d'un tel phénomène sera invisible. Il est donc important de posséder un bon générateur aléatoire.
 
-%%TODO: parler de la RNG
-On considère généralement que le générateur de nombres pseudo-aléatoires par défaut n'est pas bon\dots
-% expliquer pourquoi, en quoi on considère qu'il n'est pas bon
-% et parler rapidement du fait qu'il existe d'autres générateurs de nombres pseudo-aléatoires
-% peut-être rajouter à un endroit pourquoi on parle de pseudo-aléatoire et pas d'aléatoire
+En réalité en informatique il est très difficile d'avoir un générateur de nombres aléatoires (RNG pour \emph{random number generator}) puisque ces nombres sont issus d'un algorithme donc déterministes. On parle alors de générateurs de nombres pseudo-aléatoires (PRNG pour \emph{pseudo-random number generator}) car ces nombres sembles aléatoires. Une étude statistique permet de montrer que les générateurs de nombres pseudo-aléatoires possèdent une période et sont donc cycliques.
+
+Le PRNG par défaut de \Cpp{} est considéré comme mauvais car ayant une courte période, sauf depuis \Cpp{}11 où un générateur plus performant a été implémenté. Ce nouveau générateur est l'algorithme de \emph{Mersenne Twister} découvert en 1997 et possédant une période de $2^{19937}-1$. Il est actuellement considéré comme un des meilleurs PRNG connu de par ses résultats au test de \emph{Diehard}, test des générateurs de nombres pseudo-aléatoires, et de par sa rapidité.
+
+%% TODO: chercher une image montrant que certains PRNG sont mieux que d'autres
 
 \ 
 
 Il est aussi important de définir l'écart moyen et maximal prévu entre les données de SDSS et les résultats du \stack{} lors de la \DC{}. Le plus simple pour cela est d'utiliser les résultats déjà obtenu lors de mon précédent stage au LPC.
+
+À partir de ces anciens résultats nous allons meusurer la largeur de la courbe en cloche obtenue, ainsi nous pouvons meusurer de façon empirique l'écart-type $\sigma$. Nous considèrerons que l'espérence est nulle. Ces deux informations permettent de définir une loi de probabilité normale $\mathcal{N}(\sigma,0)$. Cette loi de probabilité permet de créer un bruit gaussien sur les données de SDSS. Dans la pratique l'écart-type $\sigma$ est un vecteur de dimension 3, deux composantes pour l'ascension droite et la déclinaison, et une troisième pour la magnitude, obtenues à partir des mesures des écarts-types suivant ces trois paramètres.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/mesuresigma.png}
+		\caption[Mesure de l'écart-type à partir des anciens résultats]{Mesure de l'écart-type $\sigma$ à partir des résultats obtenus en août 2014.}
+		\label{fig:mesuresigma}
+	\end{figure}
 
 
 % ======================================================================
