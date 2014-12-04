@@ -29,7 +29,7 @@ import numpy as np
 
 ## Récupération des coordonnées de la région
 
-if ( len(sys.argv) >= 4 ) :
+if ( len(sys.argv) >= 5 ) :
 	ra_min  = sys.argv[1]
 	dec_min = sys.argv[2]
 	ra_max  = sys.argv[3]

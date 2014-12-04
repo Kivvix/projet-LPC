@@ -71,7 +71,7 @@ endif
 # Build main.o from main.c and all header files
 $(LIBDIR)/main.o : $(SRCDIR)/main.$(SRCEXT) $(INC)
 	@[ ! -d $(LIBDIR) ] && mkdir $(LIBDIR) || :
-	@$(echo) -e "\e[35mmain.o\033[0m"
+	@$(echo) -e "\e[35m$(notdir $@)\033[0m"
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
 # Build object files from *.c
