@@ -50,7 +50,7 @@ complet:
 	@${LATEX} ${SRC}
 	@date +%H:%M:%S
 	@notify-send -i /usr/share/icons/gnome/32x32/emblems/emblem-generic.png "Compilation n°3" "Check : $$(date +%H:%M:%S)"
-	@$(ECHO) "\033[33mTemps de compilation : $$(( $$(date -d now +%s) - $(DEB) )) s"
+	@$(ECHO) "\033[33mTemps de compilation : $$(( $$(date -d now +%s) - $(DEB) )) s\033[0m"
 	@notify-send -i /usr/share/icons/gnome/32x32/actions/document-open-recent.png "Temps de compilation" "$$(( $$(date -d now +%s) - $(DEB) )) s"
 
 initial: propre
